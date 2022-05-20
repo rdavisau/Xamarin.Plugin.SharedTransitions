@@ -1,12 +1,12 @@
-﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.41">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <!--Work around so the conditions work below-->
-      <TargetFrameworks>netstandard2.0;MonoAndroid90;MonoAndroid10.0;Xamarin.iOS10;</TargetFrameworks>
+    <TargetFrameworks>net6.0;net6.0-ios;net6.0-android</TargetFrameworks>
 
     <AssemblyName>Plugin.SharedTransitions</AssemblyName>
     <RootNamespace>Plugin.SharedTransitions</RootNamespace>
-    <PackageId>Xamarin.Plugin.SharedTransitions</PackageId>
+    <PackageId>Xamarin.Plugin.SharedTransitions.net6</PackageId>
     
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
     <AssemblyVersion>2.4</AssemblyVersion>
@@ -20,6 +20,9 @@
     
     <UseFullSemVerForNuGet>false</UseFullSemVerForNuGet>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseMaui>true</UseMaui>
 
     <AndroidUseManagedDesignTimeResourceGenerator>False</AndroidUseManagedDesignTimeResourceGenerator>
 
@@ -62,34 +65,16 @@ A shared element transition determines how elements that are present in two page
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.725" />
     <Compile Include="**\Shared\**\*.cs" />
-
   </ItemGroup>
 
-  <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'MonoAndroid10.0'">
-    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.1.0" />
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.725" />
-    <PackageReference Include="Xamarin.AndroidX.Fragment" Version="1.2.4.1" />
-    <PackageReference Include="Xamarin.AndroidX.Transition" Version="1.3.1.1" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'MonoAndroid9.0'">
-    <PackageReference Include="Xamarin.Android.Support.Transition" Version="28.0.0.3" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">     
+  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0-android'">
     <Compile Include="Platforms\Android\**\*.cs" />
     <AndroidResource Include="Resources\**\*.xml" />
   </ItemGroup>
 
-  <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.iOS')) ">
+  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0-ios'">
     <Compile Include="Platforms\iOS\**\*.cs" />
   </ItemGroup>
-
-   <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 
 </Project>

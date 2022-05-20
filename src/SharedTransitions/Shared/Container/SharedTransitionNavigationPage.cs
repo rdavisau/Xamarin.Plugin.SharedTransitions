@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using Plugin.SharedTransitions.Shared.Utils;
-using Xamarin.Forms;
+
 
 namespace Plugin.SharedTransitions
 {
@@ -173,7 +173,7 @@ namespace Plugin.SharedTransitions
             base.OnChildAdded(child);
         }
 
-        protected override void OnChildRemoved(Element child)
+        protected override void OnChildRemoved(Element child, int index)
         {
             TransitionMap.RemoveFromPage((Page)child);
 

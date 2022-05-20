@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using UIKit;
 
 namespace Plugin.SharedTransitions.Platforms.iOS
@@ -11,7 +12,7 @@ namespace Plugin.SharedTransitions.Platforms.iOS
         /// <summary>
         /// Current percentage
         /// </summary>
-        public nfloat Percent { get; set; }
+        public NFloat Percent { get; set; }
         /// <summary>
         /// Current state
         /// </summary>

@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Xamarin.Forms;
 
 namespace Plugin.SharedTransitions
 {
@@ -15,13 +14,11 @@ namespace Plugin.SharedTransitions
 
 	        switch (mainPage)
             {
-				case Shell appShell:
+	            case Shell appShell:
 					return appShell.GetCurrentShellPage();
                 case SharedTransitionNavigationPage navPage:
                     return navPage.Navigation?.NavigationStack?.Last()?.GetCurrentPageFromModal();
-				case MasterDetailPage masterPage:
-                    return masterPage.Detail.GetCurrentPage();
-                case TabbedPage tabbedPage:
+	            case TabbedPage tabbedPage:
                     return tabbedPage.CurrentPage.GetCurrentPage();
                 default:
                     return null;

@@ -1,8 +1,9 @@
 ﻿using Android.Content;
+using Microsoft.Maui.Controls.Compatibility;
+using Microsoft.Maui.Controls.Handlers.Compatibility;
+using Microsoft.Maui.Controls.Platform.Compatibility;
 using Plugin.SharedTransitions;
 using Plugin.SharedTransitions.Platforms.Android;
-using Xamarin.Forms;
-using Xamarin.Forms.Platform.Android;
 
 [assembly:ExportRenderer(typeof(SharedTransitionShell), typeof(SharedTransitionShellRenderer))]
 namespace Plugin.SharedTransitions.Platforms.Android

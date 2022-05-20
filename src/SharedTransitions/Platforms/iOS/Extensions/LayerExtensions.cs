@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using CoreGraphics;
 using CoreAnimation;
-using Xamarin.Forms;
-using Xamarin.Forms.Platform.iOS;
+using Microsoft.Maui.Controls.Compatibility.Platform.iOS;
 
 namespace Plugin.SharedTransitions.Platforms.iOS
 {
@@ -68,7 +68,7 @@ namespace Plugin.SharedTransitions.Platforms.iOS
         }
 
         // Fix for from starting from 4.8
-        internal static nfloat GetRadiusFromSubLayers(this CALayer layer)
+        internal static NFloat GetRadiusFromSubLayers(this CALayer layer)
         {
             if (layer.CornerRadius == 0 && layer.Sublayers!=null)
             {

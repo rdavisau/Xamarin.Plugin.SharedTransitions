@@ -4,12 +4,15 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Android.OS;
+using AndroidX.AppCompat.App;
+using Microsoft.Maui.Controls.Compatibility;
+using Microsoft.Maui.Controls.Compatibility.Platform.Android.AppCompat;
+using Microsoft.Maui.Controls.Internals;
+using Microsoft.Maui.Controls.Platform;
+using Microsoft.Maui.Platform;
 using Plugin.SharedTransitions;
 using Plugin.SharedTransitions.Platforms.Android;
-using Xamarin.Forms;
-using Xamarin.Forms.Internals;
-using Xamarin.Forms.Platform.Android;
-using Xamarin.Forms.Platform.Android.AppCompat;
+
 using Context = Android.Content.Context;
 using View = Android.Views.View;
 using Plugin.SharedTransitions.Platforms.Android.Extensions;
@@ -100,7 +103,7 @@ namespace Plugin.SharedTransitions.Platforms.Android
 
         public SharedTransitionNavigationPageRenderer(Context context) : base(context)
         {
-            SupportFragmentManager = ((FormsAppCompatActivity)Context).SupportFragmentManager;
+            SupportFragmentManager = Context.GetFragmentManager();
 
             //We need the last FragmentManager in Hyerarchy (for tabbed/masterpage)
             _navigationTransition = new NavigationTransition(this);
@@ -125,8 +128,7 @@ namespace Plugin.SharedTransitions.Platforms.Android
 
 	        if (!(child is Toolbar) && Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
 	        {
-                if (((SharedTransitionNavigationPage) Element).Parent is TabbedPage ||
-                    ((SharedTransitionNavigationPage) Element).Parent is MasterDetailPage)
+                if (((SharedTransitionNavigationPage) Element).Parent is TabbedPage)
                 {
 	                IsInTabbedPage = true;
                     var fragment = child.ParentFragment(SupportFragmentManager);

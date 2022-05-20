@@ -1,7 +1,7 @@
 ﻿using System;
 using UIKit;
 using CoreGraphics;
-using Xamarin.Forms;
+
 
 namespace Plugin.SharedTransitions.Platforms.iOS
 {

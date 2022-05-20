@@ -2,10 +2,10 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Android.OS;
+using Microsoft.Maui.Controls.Internals;
+using Microsoft.Maui.Controls.Platform.Compatibility;
 using Plugin.SharedTransitions.Platforms.Android.Extensions;
-using Xamarin.Forms;
-using Xamarin.Forms.Internals;
-using Xamarin.Forms.Platform.Android;
+
 using View = Android.Views.View;
 #if __ANDROID_29__
 using AndroidX.Fragment.App;

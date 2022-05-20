@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
+using Microsoft.Maui.Controls.Platform;
 using Plugin.SharedTransitions;
-using Xamarin.Forms;
-using Xamarin.Forms.Platform.iOS;
 
 [assembly: ResolutionGroupName(Transition.ResolutionGroupName)]
 [assembly: ExportEffect(typeof(Plugin.SharedTransitions.Platforms.iOS.TransitionEffect), Transition.EffectName)]

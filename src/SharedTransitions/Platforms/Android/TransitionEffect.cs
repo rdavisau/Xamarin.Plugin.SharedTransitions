@@ -1,8 +1,8 @@
 ﻿using Android.OS;
 using System.ComponentModel;
+using Microsoft.Maui.Controls.Platform;
 using Plugin.SharedTransitions;
-using Xamarin.Forms;
-using Xamarin.Forms.Platform.Android;
+
 using AndroidViews = Android.Views;
 
 [assembly: ResolutionGroupName(Transition.ResolutionGroupName)]

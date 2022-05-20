@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using Foundation;
 using UIKit;
 using CoreGraphics;
 using CoreAnimation;
+using Microsoft.Maui.Controls.Compatibility.Platform.iOS;
+using Microsoft.Maui.Platform;
 using ObjCRuntime;
-using Xamarin.Forms;
-using Xamarin.Forms.Platform.iOS;
-using Color = Xamarin.Forms.Color;
+
+using Color = Microsoft.Maui.Graphics.Color;
 
 namespace Plugin.SharedTransitions.Platforms.iOS
 {
@@ -38,16 +40,16 @@ namespace Plugin.SharedTransitions.Platforms.iOS
             //We dont need these calculations from *Fill methods
             if (imageView.ContentMode == UIViewContentMode.ScaleAspectFit && imageView.Image != null)
             {
-                nfloat imageAspect   = imageView.Image.Size.Width / imageView.Image.Size.Height;
-                nfloat boundslAspect = imageView.Frame.Size.Width / imageView.Frame.Size.Height;
+                var imageAspect   = imageView.Image.Size.Width / imageView.Image.Size.Height;
+                var boundslAspect = imageView.Frame.Size.Width / imageView.Frame.Size.Height;
 
                 if (imageAspect != boundslAspect)
                 {
                     //calculate new dimensions based on aspect ratio
-                    nfloat newWidth   = imageView.Frame.Width * imageAspect;
-                    nfloat newHeight  = newWidth / imageAspect;
-                    nfloat marginTop  = 0;
-                    nfloat marginLeft = 0;
+                    var newWidth   = imageView.Frame.Width * imageAspect;
+                    var newHeight  = newWidth / imageAspect;
+                    NFloat marginTop  = 0;
+                    NFloat marginLeft = 0;
 
                     if (newWidth > imageView.Frame.Width || newHeight > imageView.Frame.Height)
                     {
@@ -98,7 +100,7 @@ namespace Plugin.SharedTransitions.Platforms.iOS
                     };
                 }
 
-                return (UIView) NSKeyedUnarchiver.UnarchiveObject(NSKeyedArchiver.ArchivedDataWithRootObject(fromView));
+                return (UIView) NSKeyedUnarchiver.UnarchiveObject(NSKeyedArchiver.GetArchivedData(fromView));
             }
 
             var fromViewSnapshot = new UIView
@@ -127,7 +129,8 @@ namespace Plugin.SharedTransitions.Platforms.iOS
                  * has different corner radius. So for the sake of good transitions lets rebuild that bezier path!
                  */
                 var bezierPath = fromBoxRenderer.Element.GetCornersPath(fromBoxRenderer.Bounds);
-                fromViewSnapshot.Layer.BackgroundColor = fromBoxRenderer.Element.BackgroundColor.ToCGColor() ?? Color.Default.ToCGColor();
+                fromViewSnapshot.Layer.BackgroundColor = fromBoxRenderer.Element.BackgroundColor.ToCGColor() ??
+                                                         (default(Color)).ToCGColor();
 
                 fromViewSnapshot.Layer.Mask = new CAShapeLayer
                 {

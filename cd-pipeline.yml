@@ -1,0 +1,54 @@
+variables:
+  MONO_VERSION: 6_12_0
+  NETCORE_VERSION: '6.0.x'
+
+# set the version numbering, this results in 1.0.1 for the first build incrementing that way.
+name: 3.6$(rev:.r)
+
+# Defines that a commit to the master branch should trigger this build
+trigger:
+- master
+
+# Defines that PRs against this branch should also trigger this build
+pr:
+- master
+
+# the machine and prerequisites to run this build on
+pool:
+  vmImage: macOS-10.15
+
+# The different steps in our build
+steps:
+
+- bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh $(MONO_VERSION)
+  displayName: Switch to the latest Xamarin SDK
+
+- task: UseDotNet@2
+  displayName: 'Use .Net Core sdk'
+  inputs:
+     version: $(NETCORE_VERSION)
+     includePreviewVersions: false
+
+- task: CmdLine@2
+  displayName: dotnet workload installarino
+  inputs:
+    script: 'dotnet workload install maui'
+
+- task: CmdLine@2
+  displayName: dotnet pack
+  inputs:
+    script: |
+      dotnet build -c Release src/SharedTransitions/SharedTransitions.csproj
+      dotnet pack  -c Release src/SharedTransitions/SharedTransitions.csproj --output $(build.artifactstagingdirectory)/final --include-source
+    
+# copy all the nupkg files created to the artifact directory
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+  inputs:
+    SourceFolder: '$(build.sourcesdirectory)'
+    Contents: '**\*.nupkg'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+
+# publish the artifacts as results of the build
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'

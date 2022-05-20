@@ -5,7 +5,7 @@ using SupportTransitions = AndroidX.Transitions;
 using Android.Support.V4.App;
 using SupportTransitions = Android.Support.Transitions;
 #endif
-using Xamarin.Forms;
+
 
 namespace Plugin.SharedTransitions.Platforms.Android
 {

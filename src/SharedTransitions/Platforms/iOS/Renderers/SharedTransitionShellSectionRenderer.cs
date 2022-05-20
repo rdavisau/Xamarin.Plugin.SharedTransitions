@@ -4,10 +4,9 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Foundation;
+using Microsoft.Maui.Controls.Internals;
+using Microsoft.Maui.Controls.Platform.Compatibility;
 using UIKit;
-using Xamarin.Forms;
-using Xamarin.Forms.Internals;
-using Xamarin.Forms.Platform.iOS;
 
 namespace Plugin.SharedTransitions.Platforms.iOS
 {

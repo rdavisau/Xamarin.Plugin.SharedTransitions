@@ -1,8 +1,8 @@
 ﻿using System;
 using Android.Content;
+using Microsoft.Maui.Controls.Compatibility;
+using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 using Plugin.SharedTransitions.Platforms.Android;
-using Xamarin.Forms;
-using Xamarin.Forms.Platform.Android;
 
 [assembly: ExportRenderer(typeof(Page), typeof(SharedTransitionPageRenderer))]
 namespace Plugin.SharedTransitions.Platforms.Android

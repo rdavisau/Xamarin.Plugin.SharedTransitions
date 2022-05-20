@@ -3,11 +3,12 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Foundation;
+using Microsoft.Maui.Controls.Compatibility;
+using Microsoft.Maui.Controls.Compatibility.Platform.iOS;
+using Microsoft.Maui.Controls.Platform;
 using Plugin.SharedTransitions;
 using Plugin.SharedTransitions.Platforms.iOS;
 using UIKit;
-using Xamarin.Forms;
-using Xamarin.Forms.Platform.iOS;
 
 [assembly:ExportRenderer(typeof(SharedTransitionNavigationPage), typeof(SharedTransitionNavigationRenderer))]
 

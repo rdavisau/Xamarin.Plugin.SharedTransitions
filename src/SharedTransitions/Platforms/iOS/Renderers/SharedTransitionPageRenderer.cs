@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
+using Microsoft.Maui.Controls.Compatibility;
+using Microsoft.Maui.Controls.Compatibility.Platform.iOS;
 using Plugin.SharedTransitions.Platforms.iOS.Renderers;
-using Xamarin.Forms;
-using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportRenderer(typeof(Page), typeof(SharedTransitionPageRenderer))]
 namespace Plugin.SharedTransitions.Platforms.iOS.Renderers
